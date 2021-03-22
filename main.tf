@@ -25,13 +25,15 @@ resource "azurerm_virtual_network" "example" {
     address_prefix = "192.168.100.0/26"
   }
 
-  subnet {
-    name           = "subnet2"
-    address_prefix = "192.168.100.64/26"
-  }
-
-
   tags = {
     environment = "Production"
   }
+}
+
+resource "azurerm_subnet" "examplesubnet" {
+  name                 = "subnet2"
+  resource_group_name  = azurerm_resource_group.example.name
+  virtual_network_name = azurerm_virtual_network.example.name
+  address_prefix     = ["192.168.1.128/26"]
+
 }
