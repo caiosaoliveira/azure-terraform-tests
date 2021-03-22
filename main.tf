@@ -37,3 +37,11 @@ resource "azurerm_subnet" "examplesubnet" {
   address_prefixes     = ["192.168.100.128/26"]
 
 }
+
+resource "azurerm_subnet" "examplesubnet" {
+  name                 = "subnet3"
+  resource_group_name  = azurerm_resource_group.example.name
+  virtual_network_name = azurerm_virtual_network.example.name
+  address_prefixes     = ["192.168.100.192/26"]
+
+}
