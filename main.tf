@@ -21,23 +21,23 @@ resource "azurerm_resource_group" "rg" {
 # Creating VNET
 
 resource "azurerm_virtual_network" "vnet" {
-  name                = "VNET-Terraform"
+  name                = "vnet-terraform"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   address_space       = ["192.168.100.0/24"]
 
   subnet {
-    name           = "vnet-subnet1"
+    name           = "vnet-terraform-subnet1"
     address_prefix = "192.168.100.64/26"
   }
 
   subnet {
-    name           = "vnet-subnet2"
+    name           = "vnet-terraform-subnet2"
     address_prefix = "192.168.100.128/26"
   }
 
   subnet {
-    name           = "vnet-subnet3"
+    name           = "vnet-terraform-subnet3"
     address_prefix = "192.168.100.192/26"
   }
 
@@ -46,9 +46,6 @@ resource "azurerm_virtual_network" "vnet" {
      address_prefix = "192.168.100.0/26"
    }
 
-  tags = {
-    environment = "Tests Terraform"
-  }
 }
 
 # Virtual Network Gateway Creation
@@ -64,7 +61,7 @@ data "azurerm_subnet" "gateway_subnet" {
 # Requesting Public IP
 
 resource "azurerm_public_ip" "publicIP" {
-  name                = "VirtualNetworkGateway_public_ip"
+  name                = "virtual-network-gateway-public-ip-terraform"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -74,7 +71,7 @@ resource "azurerm_public_ip" "publicIP" {
 # Creating Virtual Network Gateway
 
 resource "azurerm_virtual_network_gateway" "vng" {
-  name                = "VirtualNetworkGateway"
+  name                = "virtual-network-gateway-terraform"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -102,7 +99,7 @@ resource "azurerm_virtual_network_gateway" "vng" {
 # }
 
 resource "azurerm_virtual_network_gateway_connection" "connection" {
-  name                = "VNET_to_AVS"
+  name                = "vnet-to-avs"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
