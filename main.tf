@@ -114,6 +114,11 @@ resource "azurerm_virtual_network_gateway_connection" "connection" {
 #  express_route_circuit_id = var.avs_express_route_id
 }
 
+data "azurerm_virtual_network_gateway_connection" "example55" {
+  name                = "VNET_to_AVS"
+  resource_group_name = azurerm_resource_group.rg.name
+}
+
 output "sddc_express_route2" {
-  value = connection.express_route_circuit_id
+  value = example55.express_route_circuit_id
 }
