@@ -70,7 +70,7 @@ resource "azurerm_subnet" "example" {
   name                 = "GatewaySubnet"
   resource_group_name  = azurerm_resource_group.example.name
   virtual_network_name = azurerm_virtual_network.example.name
-  address_prefixes     = ["192.168.0.0/26"]
+  address_prefixes     = ["192.168.100.0/26"]
 }
 
 resource "azurerm_public_ip" "example" {
