@@ -110,3 +110,11 @@ resource "azurerm_virtual_network_gateway" "example" {
 #   express_route_circuit_id =
   
 # }
+
+
+
+resource "azurerm_express_route_circuit_authorization" "example" {
+  name                       = "exampleERCAuth"
+  express_route_circuit_name = "tnt26-cust-p03-eastus-er"
+  resource_group_name        = azurerm_resource_group.example.name
+}
