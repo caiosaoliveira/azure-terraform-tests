@@ -90,7 +90,7 @@ resource "azurerm_virtual_network_gateway" "vng" {
 
 }
 
-# Creating a Connection to AVS using a provided Authorization Key
+# Creating a Connection to AVS using a provided Authorization Key - add to variables.tf
 
 data "azurerm_vmware_private_cloud" "avs_sddc" {
   name                = var.azurerm_vmware_private_cloud_name
@@ -112,9 +112,4 @@ resource "azurerm_virtual_network_gateway_connection" "connection" {
 
 output "express_route" {
   value = data.azurerm_vmware_private_cloud.avs_sddc.circuit[0].express_route_id
-}
-
-output "express_route_avs" {
-  value = var.avs_express_route_id
-  sensitive = true
 }
