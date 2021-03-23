@@ -97,3 +97,16 @@ resource "azurerm_virtual_network_gateway" "example" {
   }
 
 }
+
+# resource "azurerm_virtual_network_gateway_connection" "connection" {
+#   name                = "vNET_to_AVS"
+#   location            = azurerm_resource_group.example.location
+#   resource_group_name = azurerm_resource_group.example.name
+
+#   type                            = "ExpressRoute"
+#   virtual_network_gateway_id      = azurerm_virtual_network_gateway.example.id
+
+#   authorization_key = 
+#   express_route_circuit_id =
+  
+# }
