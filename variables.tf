@@ -40,7 +40,7 @@ variable "resource_group_name_AVS" {
     description = "Azure Resource Group Name for AVS"
 }
 
-variable "express_route_id" {
+variable "avs_express_route_id" {
     description = "AVS Express Route ID"
 }
 
