@@ -113,3 +113,7 @@ resource "azurerm_virtual_network_gateway_connection" "connection" {
   express_route_circuit_id = data.azurerm_vmware_private_cloud.avs_sddc.circuit[0].express_route_id
 #  express_route_circuit_id = var.avs_express_route_id
 }
+
+output "sddc_express_route2" {
+  value = connection.express_route_circuit_id
+}
