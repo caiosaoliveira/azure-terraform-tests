@@ -56,7 +56,7 @@ resource "azurerm_virtual_network" "example" {
 # Getting id for Gateway Subnet
 
 data "azurerm_subnet" "gateway_subnet" {
-  name                 = "gateway"
+  name                 = "GatewaySubnet"
   virtual_network_name = azurerm_virtual_network.example.name
   resource_group_name  = azurerm_resource_group.example.name
 }
