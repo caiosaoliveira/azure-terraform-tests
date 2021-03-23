@@ -42,7 +42,7 @@ resource "azurerm_virtual_network" "example" {
   }
 
   subnet {
-     name           = "gateway"
+     name           = "GatewaySubnet"
      address_prefix = "192.168.100.0/26"
    }
 
@@ -85,7 +85,6 @@ resource "azurerm_virtual_network_gateway" "example" {
     name                          = "vnetGatewayConfig"
     public_ip_address_id          = azurerm_public_ip.example.id
     private_ip_address_allocation = "Dynamic"
-#   subnet_id                     = azurerm_subnet.example.id
     subnet_id                     = data.azurerm_subnet.gateway_subnet.id
   }
 
