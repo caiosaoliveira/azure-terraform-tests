@@ -20,31 +20,43 @@ resource "azurerm_virtual_network" "example" {
   resource_group_name = azurerm_resource_group.example.name
   address_space       = ["192.168.100.0/24"]
 
+  subnet {
+    name           = "subnet1"
+    address_prefix = "192.168.100.64/24"
+  }
+
+  subnet {
+    name           = "subnet2"
+    address_prefix = "192.168.100.128/24"
+  }
+
+  subnet {
+    name           = "subnet3"
+    address_prefix = "192.168.100.192/24"
+  }
+
   tags = {
     environment = "Tests Terraform"
   }
 }
 
-resource "azurerm_subnet" "examplesubnet" {
-  name                 = "Subnet-Terraform-01"
-  resource_group_name  = azurerm_resource_group.example.name
-  virtual_network_name = azurerm_virtual_network.example.name
-  address_prefixes     = ["192.168.100.0/26"]
+# resource "azurerm_subnet" "examplesubnet" {
+#   name                 = "Subnet-Terraform-01"
+#   resource_group_name  = azurerm_resource_group.example.name
+#   virtual_network_name = azurerm_virtual_network.example.name
+#   address_prefixes     = ["192.168.100.0/26"]
+# }
 
-}
+# resource "azurerm_subnet" "examplesubnet2" {
+#   name                 = "Subnet-Terraform-02"
+#   resource_group_name  = azurerm_resource_group.example.name
+#   virtual_network_name = azurerm_virtual_network.example.name
+#   address_prefixes     = ["192.168.100.64/26"]
+# }
 
-resource "azurerm_subnet" "examplesubnet2" {
-  name                 = "Subnet-Terraform-02"
-  resource_group_name  = azurerm_resource_group.example.name
-  virtual_network_name = azurerm_virtual_network.example.name
-  address_prefixes     = ["192.168.100.128/26"]
-
-}
-
-resource "azurerm_subnet" "examplesubnet3" {
-  name                 = "Subnet-Terraform-03"
-  resource_group_name  = azurerm_resource_group.example.name
-  virtual_network_name = azurerm_virtual_network.example.name
-  address_prefixes     = ["192.168.100.192/26"]
-
-}
+# resource "azurerm_subnet" "examplesubnet3" {
+#   name                 = "Subnet-Terraform-03"
+#   resource_group_name  = azurerm_resource_group.example.name
+#   virtual_network_name = azurerm_virtual_network.example.name
+#   address_prefixes     = ["192.168.100.128/26"]
+# }
