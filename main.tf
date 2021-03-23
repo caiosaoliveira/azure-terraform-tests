@@ -116,4 +116,5 @@ output "express_route" {
 
 output "express_route_avs" {
   value = var.avs_express_route_id
+  sensitive = true
 }
