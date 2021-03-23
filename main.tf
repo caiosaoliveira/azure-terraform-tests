@@ -114,6 +114,6 @@ resource "azurerm_virtual_network_gateway_connection" "connection" {
   virtual_network_gateway_id      = azurerm_virtual_network_gateway.example.id
 
   authorization_key = var.authorization_key
-  express_route_circuit_id = data.azurerm_vmware_private_cloud.avs_sddc.circuit.express_route_id
+  express_route_circuit_id = data.azurerm_vmware_private_cloud.avs_sddc.circuit[express_route_id]
   
 }
