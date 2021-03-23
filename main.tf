@@ -64,7 +64,7 @@ data "azurerm_subnet" "gateway_subnet" {
 # Requesting Public IP
 
 resource "azurerm_public_ip" "publicIP" {
-  name                = "test"
+  name                = "VirtualNetworkGateway_public_ip"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -74,7 +74,7 @@ resource "azurerm_public_ip" "publicIP" {
 # Creating Virtual Network Gateway
 
 resource "azurerm_virtual_network_gateway" "vng" {
-  name                = "test"
+  name                = "VirtualNetworkGateway"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -92,14 +92,14 @@ resource "azurerm_virtual_network_gateway" "vng" {
 
 # Creating a Connection to AVS using a provided Authorization Key - add to variables.tf
 
-data "azurerm_vmware_private_cloud" "avs_sddc" {
-  name                = var.azurerm_vmware_private_cloud_name
-  resource_group_name = var.resource_group_name_AVS
-}
+# data "azurerm_vmware_private_cloud" "avs_sddc" {
+#   name                = var.azurerm_vmware_private_cloud_name
+#   resource_group_name = var.resource_group_name_AVS
+# }
 
-output "sddc_express_route" {
-  value = data.azurerm_vmware_private_cloud.avs_sddc.circuit[0].express_route_id
-}
+# output "sddc_express_route" {
+#   value = data.azurerm_vmware_private_cloud.avs_sddc.circuit[0].express_route_id
+# }
 
 resource "azurerm_virtual_network_gateway_connection" "connection" {
   name                = "VNET_to_AVS"
@@ -112,13 +112,4 @@ resource "azurerm_virtual_network_gateway_connection" "connection" {
   authorization_key = var.authorization_key
 #  express_route_circuit_id = data.azurerm_vmware_private_cloud.avs_sddc.circuit[0].express_route_id
   express_route_circuit_id = var.avs_express_route_id
-}
-
-data "azurerm_virtual_network_gateway_connection" "example55" {
-  name                = "VNET_to_AVS"
-  resource_group_name = azurerm_resource_group.rg.name
-}
-
-output "sddc_express_route2" {
-  value = example55.express_route_circuit_id
 }
