@@ -35,10 +35,10 @@ resource "azurerm_virtual_network" "example" {
     address_prefix = "192.168.100.192/26"
   }
 
-subnet {
-    name           = "subnet4"
-    address_prefix = "192.168.100.0/26"
-  }
+# subnet {
+#     name           = "subnet4"
+#     address_prefix = "192.168.100.0/26"
+#   }
 
   tags = {
     environment = "Tests Terraform"
@@ -65,3 +65,18 @@ subnet {
 #   virtual_network_name = azurerm_virtual_network.example.name
 #   address_prefixes     = ["192.168.100.128/26"]
 # }
+
+# resource "azurerm_virtual_network_gateway" "example" {
+#   name                = "test"
+#   location            = azurerm_resource_group.example.location
+#   resource_group_name = azurerm_resource_group.example.name
+
+#   type     = "ExpressRoute"
+#   sku      = "Standard"
+
+#   ip_configuration {
+#     name                          = "vnetGatewayConfig"
+#     public_ip_address_id          = azurerm_public_ip.example.id
+#     private_ip_address_allocation = "Dynamic"
+#     subnet_id                     = azurerm_subnet.example.id
+#   }
