@@ -100,15 +100,20 @@ resource "azurerm_virtual_network_gateway" "example" {
 
 # Creating Connection to AVS
 
-# resource "azurerm_virtual_network_gateway_connection" "connection" {
-#   name                = "vNET_to_AVS"
-#   location            = azurerm_resource_group.example.location
-#   resource_group_name = azurerm_resource_group.example.name
+data "azurerm_vmware_private_cloud" "avs_sddc" {
+  name                = var.azurerm_vmware_private_cloud_name
+  resource_group_name = var.resource_group_name
+}
 
-#   type                            = "ExpressRoute"
-#   virtual_network_gateway_id      = azurerm_virtual_network_gateway.example.id
+resource "azurerm_virtual_network_gateway_connection" "connection" {
+  name                = "vNET_to_AVS"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
 
-#   authorization_key = 
-#   express_route_circuit_id =
+  type                            = "ExpressRoute"
+  virtual_network_gateway_id      = azurerm_virtual_network_gateway.example.id
+
+  authorization_key = var.authorization_key
+  express_route_circuit_id = data.azurerm_vmware_private_cloud.avs_sddc.id.circuit.express_route_id
   
-# }
+}

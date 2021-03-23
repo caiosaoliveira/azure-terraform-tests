@@ -28,9 +28,17 @@ variable "resource_group_location" {
     description = "Azure Resource Group Location"
 }
 
-#variable "azurerm_vmware_private_cloud_name" {
-#    description = "Name of the AVS SDDC"
-#}
+variable "authorization_key" {
+    description = "AVS ExpressRoute Authorization Key - Need to request manually on AVS portal"
+}
+
+variable "azurerm_vmware_private_cloud_name" {
+    description = "Name of the AVS SDDC"
+}
+
+variable "resource_group_name_AVS" {
+    description = "Azure Resource Group Name for AVS"
+}
 
 #variable "azurerm_vmware_private_cloud_sku" {
 #    description = "The host type used for AVS"
