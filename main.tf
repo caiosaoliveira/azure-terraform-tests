@@ -35,6 +35,11 @@ resource "azurerm_virtual_network" "example" {
     address_prefix = "192.168.100.192/26"
   }
 
+subnet {
+    name           = "subnet4"
+    address_prefix = "192.168.100.0/26"
+  }
+
   tags = {
     environment = "Tests Terraform"
   }
