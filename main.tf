@@ -102,7 +102,7 @@ resource "azurerm_virtual_network_gateway" "example" {
 
 data "azurerm_vmware_private_cloud" "avs_sddc" {
   name                = var.azurerm_vmware_private_cloud_name
-  resource_group_name = var.resource_group_name
+  resource_group_name = var.resource_group_name_AVS
 }
 
 resource "azurerm_virtual_network_gateway_connection" "connection" {
