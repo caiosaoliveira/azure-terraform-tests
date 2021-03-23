@@ -22,17 +22,17 @@ resource "azurerm_virtual_network" "example" {
 
   subnet {
     name           = "subnet1"
-    address_prefix = "192.168.100.64/24"
+    address_prefix = "192.168.100.64/26"
   }
 
   subnet {
     name           = "subnet2"
-    address_prefix = "192.168.100.128/24"
+    address_prefix = "192.168.100.128/26"
   }
 
   subnet {
     name           = "subnet3"
-    address_prefix = "192.168.100.192/24"
+    address_prefix = "192.168.100.192/26"
   }
 
   tags = {
