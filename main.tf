@@ -97,15 +97,15 @@ data "azurerm_vmware_private_cloud" "avs_sddc" {
   resource_group_name = var.resource_group_name_AVS
 }
 
-# resource "azurerm_virtual_network_gateway_connection" "connection" {
-#   name                = "VNET_to_AVS"
-#   location            = azurerm_resource_group.rg.location
-#   resource_group_name = azurerm_resource_group.rg.name
+resource "azurerm_virtual_network_gateway_connection" "connection" {
+  name                = "VNET_to_AVS"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
 
-#   type                            = "ExpressRoute"
-#   virtual_network_gateway_id      = azurerm_virtual_network_gateway.vng.id
+  type                            = "ExpressRoute"
+  virtual_network_gateway_id      = azurerm_virtual_network_gateway.vng.id
 
-#   authorization_key = var.authorization_key
-#   express_route_circuit_id = data.azurerm_vmware_private_cloud.avs_sddc.circuit[0].express_route_id
-  
-# }
+  authorization_key = var.authorization_key
+#  express_route_circuit_id = data.azurerm_vmware_private_cloud.avs_sddc.circuit[0].express_route_id
+  express_route_circuit_id = var.avs_express_route_id
+}

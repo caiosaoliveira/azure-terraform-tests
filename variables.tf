@@ -40,6 +40,10 @@ variable "resource_group_name_AVS" {
     description = "Azure Resource Group Name for AVS"
 }
 
+variable "express_route_id" {
+    description = "AVS Express Route ID"
+}
+
 #variable "azurerm_vmware_private_cloud_sku" {
 #    description = "The host type used for AVS"
 #}
