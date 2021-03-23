@@ -90,30 +90,22 @@ resource "azurerm_virtual_network_gateway" "vng" {
 
 }
 
-# Getting Authorization Key on AVS for Connection setup on Virtual Network Gateway
-
-# resource "azurerm_express_route_circuit_authorization" "example" {
-#   name                       = "exampleERCAuth"
-#   express_route_circuit_name = "tnt26-cust-p03-eastus-er"
-#   resource_group_name        = "tnt26-cust-p03-eastus"
-# }
-
-# Creating Connection to AVS
+# Creating a Connection to AVS using a provided Authorization Key
 
 data "azurerm_vmware_private_cloud" "avs_sddc" {
   name                = var.azurerm_vmware_private_cloud_name
   resource_group_name = var.resource_group_name_AVS
 }
 
-resource "azurerm_virtual_network_gateway_connection" "connection" {
-  name                = "VNET_to_AVS"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
+# resource "azurerm_virtual_network_gateway_connection" "connection" {
+#   name                = "VNET_to_AVS"
+#   location            = azurerm_resource_group.rg.location
+#   resource_group_name = azurerm_resource_group.rg.name
 
-  type                            = "ExpressRoute"
-  virtual_network_gateway_id      = azurerm_virtual_network_gateway.vng.id
+#   type                            = "ExpressRoute"
+#   virtual_network_gateway_id      = azurerm_virtual_network_gateway.vng.id
 
-  authorization_key = var.authorization_key
-  express_route_circuit_id = data.azurerm_vmware_private_cloud.avs_sddc.circuit[0].express_route_id
+#   authorization_key = var.authorization_key
+#   express_route_circuit_id = data.azurerm_vmware_private_cloud.avs_sddc.circuit[0].express_route_id
   
-}
+# }
